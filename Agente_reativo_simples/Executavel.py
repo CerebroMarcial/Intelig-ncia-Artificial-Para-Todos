@@ -3,6 +3,7 @@ from Enum_posicoes_existentes_no_ambiente_de_tarefa import Enum_posicoes_existen
 from Agente import Agente
 from Ambiente import Ambiente
 from Respaldo_ao_programador import *
+import random 
 
 agente=Agente()
 ambiente=Ambiente()
@@ -20,12 +21,12 @@ def agir_no_ambiente_de_tarefa(agente,ambiente,acao_decidida):
     if acao_decidida == Enum_acoes_possiveis_de_serem_tomadas.Aspirar.value:
         ambiente.o_ambiente_esta_mudando_porque_o_agente_esta_aspirando(agente.posicao_do_agente_naquele_momento)
         agente.aspirando_sujeira(agente.posicao_do_agente_naquele_momento)
-    if acao_decidida == Enum_acoes_possiveis_de_serem_tomadas.Esquerda.value:
-        agente.se_locomovendo_para_a_esquerda(Enum_posicoes_existentes_no_ambiente_de_tarefa.A.value)
-        agente.posicao_do_agente_naquele_momento=Enum_posicoes_existentes_no_ambiente_de_tarefa.A.value
-    if acao_decidida == Enum_acoes_possiveis_de_serem_tomadas.Direita.value:
-        agente.se_locomovendo_para_a_esquerda(Enum_posicoes_existentes_no_ambiente_de_tarefa.B.value)
-        agente.posicao_do_agente_naquele_momento=Enum_posicoes_existentes_no_ambiente_de_tarefa.B.value
+    if acao_decidida == Enum_acoes_possiveis_de_serem_tomadas.Movimentar.value:
+            escolha_de_movimentacao=random.choice(['A', 'B'])
+            if escolha_de_movimentacao==agente.posicao_do_agente_naquele_momento:
+                print('ATENÇÃO! A escolha aleatória de mudar de posição do agente foi igual ao local em que ele já está')
+            agente.se_locomovendo(escolha_de_movimentacao)
+            agente.posicao_do_agente_naquele_momento=escolha_de_movimentacao        
     if acao_decidida == Enum_acoes_possiveis_de_serem_tomadas.Nao_fazer_nada.value:
         print('**Desligando motores das rodas e do aspirador**')
         print('O aspirador está desligado na posicao {}'.format(agente.posicao_do_agente_naquele_momento))
@@ -37,5 +38,5 @@ for contagem in range(contagem_de_percepcoes):
     percepcao_atual_do_agente=perceber_o_ambiente_de_tarefa(agente)
     acao_decidida_a_ser_tomada=agente.agente_reativo_simples(percepcao_atual_do_agente)
     agir_no_ambiente_de_tarefa(agente,ambiente,acao_decidida_a_ser_tomada)
-    print('Fim do ciclo __________________________________________________\n')
+    print('__________________________________________________Fim do ciclo__________________________________________________\n')
         
