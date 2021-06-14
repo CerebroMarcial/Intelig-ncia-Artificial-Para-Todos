@@ -3,7 +3,7 @@ from Enum_posicoes_existentes_no_ambiente_de_tarefa import Enum_posicoes_existen
 from Agente import *
 from Ambiente import Ambiente
 from Respaldo_ao_programador import *
-import random
+import random 
 import time
 
 agente=Agente()
@@ -38,13 +38,15 @@ def agir_no_ambiente_de_tarefa(agente,ambiente,acao_decidida):
         print('**Desligando motores das rodas e do aspirador**')
         print('O aspirador está desligado na posicao {}'.format(agente.posicao_do_agente_naquele_momento))
 
-
 contagem_de_percepcoes=0
-while agente.percebeu_que_todos_os_espaços_estao_limpos == False or contagem_de_percepcoes>10 :
+while agente.percebeu_que_todos_os_espaços_estao_limpos == False:
     respaldo.imprimir_o_que_esta_acontecendo(agente,ambiente,contagem_de_percepcoes)
     contagem_de_percepcoes=contagem_de_percepcoes+1
     percepcao_atual_do_agente=perceber_o_ambiente_de_tarefa(agente)
-    acao_decidida_a_ser_tomada=agente.agente_reativo_baseado_em_modelo(percepcao_atual_do_agente)
+    acao_decidida_a_ser_tomada=agente.agente_baseado_em_objetivos(percepcao_atual_do_agente)
     agir_no_ambiente_de_tarefa(agente,ambiente,acao_decidida_a_ser_tomada)
     print('__________________________________________________Fim do ciclo__________________________________________________\n')
     time.sleep(2)
+if agente.percebeu_que_todos_os_espaços_estao_limpos == True:
+    print('O agente decidiu parar por perceber todos os espaços do ambiente')
+        

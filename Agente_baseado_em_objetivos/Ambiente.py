@@ -22,3 +22,5 @@ class Ambiente():
             self.configuraçao_do_ambiente[3]=Enum_estados_possiveis_do_ambiente_de_tarefa.Limpo.value
         elif posicao == Enum_posicoes_existentes_no_ambiente_de_tarefa.E.value:
             self.configuraçao_do_ambiente[4]=Enum_estados_possiveis_do_ambiente_de_tarefa.Limpo.value
+    
+    
