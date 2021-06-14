@@ -14,6 +14,7 @@ class Agente():
     contagem_de_vezes_que_o_agente_passou_por_D=0
     contagem_de_vezes_que_o_agente_passou_por_E=0
     posicao_do_agente_naquele_momento=Enum_posicoes_existentes_no_ambiente_de_tarefa.A.value
+    
     def agente_baseado_em_objetivos(self,percepcao):
         self.percepcao_atual.append(self.posicao_do_agente_naquele_momento+', '+percepcao)
         print('O agente está consultando os objetivos para formular qual a melhor instrução a tomar nesse momento.')
@@ -21,28 +22,28 @@ class Agente():
         print('A decisao tomada foi: {}'.format(decisao_a_ser_executada))
         return decisao_a_ser_executada
 
-
     def se_locomovendo(self,local_pretendido):
         print('**ligando o motor das rodas do aspirador**')
         print('** FZENDO BARULHO ** VRUUUMMMM ')
         print('O aspirador se locomoveu para a posicao {}'.format(local_pretendido))
         self.posicao_do_agente_naquele_momento=local_pretendido
         self.todos_os_locais_que_o_aspirador_passou.append(local_pretendido)
+        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.A.value:
+            self.contagem_de_vezes_que_o_agente_passou_por_A=self.contagem_de_vezes_que_o_agente_passou_por_A+1
+        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.B.value:
+            self.contagem_de_vezes_que_o_agente_passou_por_B=self.contagem_de_vezes_que_o_agente_passou_por_B+1
+        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.C.value:
+            self.contagem_de_vezes_que_o_agente_passou_por_C=self.contagem_de_vezes_que_o_agente_passou_por_C+1
+        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.D.value:
+            self.contagem_de_vezes_que_o_agente_passou_por_D=self.contagem_de_vezes_que_o_agente_passou_por_D+1
+        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.E.value:
+            self.contagem_de_vezes_que_o_agente_passou_por_E=self.contagem_de_vezes_que_o_agente_passou_por_E+1
         
     def aspirando_sujeira(self,posicao_do_agente):
         print('**ligando o motor do aspirador**')
         print('** FZENDO BARULHO ** BZZZZZZZZZZZZZZZZZZZZZ ')
         print('O aspirador está retirando sujeira na posicao {}'.format(self.posicao_do_agente_naquele_momento))
-        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.A.value:
-            self.contagem_de_vezes_que_o_agente_passou_por_A=self.contagem_de_vezes_que_o_agente_passou_por_A+1
-        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.B.value:
-            self.contagem_de_vezes_que_o_agente_passou_por_A=self.contagem_de_vezes_que_o_agente_passou_por_B+1
-        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.C.value:
-            self.contagem_de_vezes_que_o_agente_passou_por_A=self.contagem_de_vezes_que_o_agente_passou_por_C+1
-        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.D.value:
-            self.contagem_de_vezes_que_o_agente_passou_por_A=self.contagem_de_vezes_que_o_agente_passou_por_D+1
-        if self.posicao_do_agente_naquele_momento==Enum_posicoes_existentes_no_ambiente_de_tarefa.E.value:
-            self.contagem_de_vezes_que_o_agente_passou_por_A=self.contagem_de_vezes_que_o_agente_passou_por_E+1
+        
 
     def refletir_o_que_deve_ser_feito_acessando_o_guia_com_as_instrucoes(self,percepcao_atual):
         print('A percepcao completa atualizada é {}'.format(str(self.percepcao_atual)))
